@@ -16,19 +16,17 @@ sub import {
     Data::Lock::dlock my $locked = \%constants;
     {
         no strict 'refs';
-        ${ "$pkg\::constants" } = $locked;
-        for my $key (keys %$locked) {
-            my $value = $locked->{$key};
-            *{ "$pkg\::$key" } = sub () { $value };
-        }
-
+        ${ "$pkg\::_constants" } = $locked;
         for my $method (qw/const constants constant_names/) {
             *{ "$pkg\::$method" } = \&{ __PACKAGE__ . "::$method" };
         }
-
         push @{"$pkg\::ISA"}, ('Exporter');
         push @{"$pkg\::EXPORT"}, (keys %$locked);
     }
+
+    require constant;
+    @_ = ('constant', $locked);
+    goto constant->can('import');
 }
 
 sub const {
@@ -39,7 +37,7 @@ sub const {
 sub constants {
     no strict 'refs';
     my $pkg = shift;
-    ${ "$pkg\::constants" };
+    ${ "$pkg\::_constants" };
 }
 
 sub constant_names {
