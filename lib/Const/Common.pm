@@ -5,10 +5,12 @@ use warnings;
 
 our $VERSION = "0.01";
 
+require Exporter;
 use Data::Lock;
 
 sub import {
-    my $pkg = shift;
+    my $pkg   = caller;
+    shift;
     my %constants = @_ == 1 ? %{ $_[0] } : @_;
 
     Data::Lock::dlock my $locked = \%constants;
@@ -23,6 +25,9 @@ sub import {
         for my $method (qw/const constants constant_names/) {
             *{ "$pkg\::$method" } = \&{ __PACKAGE__ . "::$method" };
         }
+
+        push @{"$pkg\::ISA"}, ('Exporter');
+        push @{"$pkg\::EXPORT"}, (keys %$locked);
     }
 }
 
