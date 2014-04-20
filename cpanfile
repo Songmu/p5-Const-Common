@@ -1,4 +1,5 @@
 requires 'Data::Lock';
+requires 'Exporter';
 requires 'perl', '5.008005';
 
 on configure => sub {

@@ -45,6 +45,7 @@
       "runtime" : {
          "requires" : {
             "Data::Lock" : "0",
+            "Exporter" : "0",
             "perl" : "5.008005"
          }
       },
