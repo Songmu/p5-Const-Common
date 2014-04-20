@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Yet another constant definition module",
    "author" : [
       "Songmu <y.songmu@gmail.com>"
    ],
@@ -44,6 +44,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Data::Lock" : "0",
             "perl" : "5.008005"
          }
       },
@@ -54,5 +55,17 @@
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Songmu/p5-Const-Common/issues"
+      },
+      "homepage" : "https://github.com/Songmu/p5-Const-Common",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/Songmu/p5-Const-Common.git",
+         "web" : "https://github.com/Songmu/p5-Const-Common"
+      }
+   },
+   "version" : "0.01",
+   "x_authority" : "cpan:SONGMU"
 }

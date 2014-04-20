@@ -52,15 +52,35 @@ __END__
 
 =head1 NAME
 
-Const::Common - It's new $module
+Const::Common - Yet another constant definition module
 
 =head1 SYNOPSIS
 
-    use Const::Common;
+    package MyApp::Const;
+    use Const::Common (
+        BAR => 'BAZ',
+        HASH => {
+            HOGE => 'hoge',
+        },
+    );
+    __END__
+
+    use MyApp::Const;
+    print BAR; # BAZ
+    print HASH->{HOGE}; # hoge;
+    HASH->{HOGE} = 10;  # ERROR!
 
 =head1 DESCRIPTION
 
-Const::Common is ...
+Const::Common is a module to define common constants in your project.
+
+=head1 METHOD
+
+=head2 C<< $hashref = $class->constants >>
+
+=head2 C<< $array = $class->constant_names >>
+
+=head2 C<< $value = $class->const($const_name) >>
 
 =head1 LICENSE
 
@@ -74,4 +94,3 @@ it under the same terms as Perl itself.
 Songmu E<lt>y.songmu@gmail.comE<gt>
 
 =cut
-

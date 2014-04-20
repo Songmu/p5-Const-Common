@@ -1,14 +1,34 @@
 # NAME
 
-Const::Common - It's new $module
+Const::Common - Yet another constant definition module
 
 # SYNOPSIS
 
-    use Const::Common;
+    package MyApp::Const;
+    use Const::Common (
+        BAR => 'BAZ',
+        HASH => {
+            HOGE => 'hoge',
+        },
+    );
+    __END__
+
+    use MyApp::Const;
+    print BAR; # BAZ
+    print HASH->{HOGE}; # hoge;
+    HASH->{HOGE} = 10;  # ERROR!
 
 # DESCRIPTION
 
-Const::Common is ...
+Const::Common is a module to define common constants in your project.
+
+# METHOD
+
+## `$hashref = $class->constants`
+
+## `$array = $class->constant_names`
+
+## `$value = $class->const($const_name)`
 
 # LICENSE
 
